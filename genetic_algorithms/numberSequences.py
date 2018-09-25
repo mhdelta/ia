@@ -1,7 +1,7 @@
 from deap import algorithms, creator, tools, base
 import numpy as np
 import random
-NUMBER = 20
+NUMBER = input("Give me the number ")
 DIG = [str(i) for i in range(1,10)]
 OP = ['+', '-', '/', '*']
 
@@ -32,13 +32,11 @@ def validate(ind):
                 tmp = OP[random.randint(0, 3)]
         else:
             if ind[i] not in DIG:
-                tmp = DIG[random.randint(0, 8)] 
+                tmp = DIG[random.randint(0, 8)]
         new_ind.append(str(tmp))
     return new_ind
 
 def isValid(ind):
-    if len(ind)%2 != 1:
-        return False
     for i in ind[0::2]:
         if i not in DIG:
             return False
@@ -52,7 +50,7 @@ def evalOneMin(individual):
         individual = validate(individual)
     for i in individual:
             str += i    
-    return abs(eval(str) -NUMBER), 
+    return abs(eval(str) -NUMBER) + len(str) , 
 
 
 
@@ -69,10 +67,13 @@ def ex():
     hof = tools.HallOfFame(1)
     stats = tools.Statistics(lambda ind: ind.fitness.values)
     stats.register("avg", np.mean)
-    stats.register("std", np.std)
+    #stats.register("std", np.std)
     stats.register("min", np.min)
     stats.register("max", np.max)
     algorithms.eaSimple(pop, toolbox, 0.7, 0.2, 40, stats=stats, halloffame=hof)
-    print "Hall of fame: " , hof
+    if 'False' in hof[0]:
+        print "Answer not found"
+    else:
+        print "Hall of fame: " , hof
 
 ex()
