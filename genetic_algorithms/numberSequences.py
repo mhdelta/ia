@@ -63,17 +63,17 @@ toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
 toolbox.register("select", tools.selTournament, tournsize=3)
 
 def ex():
-    pop = toolbox.population(n=60)
+    pop = toolbox.population(n=200)
     hof = tools.HallOfFame(1)
     stats = tools.Statistics(lambda ind: ind.fitness.values)
     stats.register("avg", np.mean)
     #stats.register("std", np.std)
     stats.register("min", np.min)
     stats.register("max", np.max)
-    algorithms.eaSimple(pop, toolbox, 0.7, 0.2, 40, stats=stats, halloffame=hof)
+    algorithms.eaSimple(pop, toolbox, 0.7, 0.2, 15, stats=stats, halloffame=hof)
     if 'False' in hof[0]:
         print "Answer not found"
     else:
-        print "Hall of fame: " , hof
+        print "Hall of fame: " , hof[0]
 
 ex()

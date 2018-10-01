@@ -137,10 +137,9 @@ def main():
         # problem = TspProblem(1, dataMatrix)
         # result = astar_search(TspProblem, )
         # print(result)
-        for i in range(46):
-            problem = TspProblem(48,dataMatrix, tuple([str(i)]))
-            result = astar(problem)
-            print result
+        problem = TspProblem(48,dataMatrix, tuple([str(random.randint(1, 46))]))
+        result = astar(problem)
+        print result
         # problem = TspProblem(48,dataMatrix, tuple(['34']))
         # result = astar(problem)
         # print result
