@@ -5,6 +5,9 @@ from gtts import gTTS
 import os
 import datetime
 import re
+#First approach for using speech recognition and the mongo client
+#Regex expression is used to find the game in the database by its name
+#however this method might be replaced when using nl2sql 
 searched_name = raw_input("Game to look at: ");
 #regx = re.compile(searched_name)
 client = MongoClient()
@@ -25,5 +28,5 @@ if data:
 	print("Audio saved")
 else:
 	print("Not found")
-
+#Audio is saved and then system can execute it with mpg321
 #os.system("mpg321 first_game.mp3")
