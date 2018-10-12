@@ -91,6 +91,8 @@ def animate_8_puzzle(path):
         time.sleep(1.3)
 
 def h_euclidian(node):
+	"""Describes the distance that would take moving with the minimun distance vector, totally
+	differente to manhattan distance"""
     state = node.state
     total = 0
     for tup in state:
@@ -149,6 +151,7 @@ def h_sequential_sum(node):
 
 
 def h_manhattan(node):
+	"""Does not allow diagonal move, only horizontally or vertically"""
     state = node.state
     rowsoff = 0
     colsoff = 0
@@ -197,7 +200,7 @@ result = BFTS(problem)
 t_end = datetime.now()
 delta = t_end - t_start
 total = timedelta.total_seconds(delta)
-
+#Allows comparation between breath first and depth first search
 animate_8_puzzle(result.path())
 
 print( "Breadth first Time elapsed: " , total, " seconds") 
