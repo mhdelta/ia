@@ -4,6 +4,7 @@ import random
 SIZE = 8
 
 def CreateRandomBoard():
+	"""Crea un tablero aleatorio con 0 y 1, donde 0 es un espacio vac¡o y 1 es un caballo"""
     matrix = []
     for i in range(SIZE):
         m = []
@@ -22,6 +23,8 @@ creator.create('Individual', list, fitness=creator.FitnessMin)
 
 
 def getAttacks(matrix):
+	""" Obtiene el n£mero de ataques que producen los caballos es un tablero, esta medida sirve para saber que tan
+	bueno es un tablero """
     attackMatrix = []
     for i in range(SIZE):
         m = []
@@ -71,6 +74,8 @@ def getAttacks(matrix):
 
 
 def getRatio(matrix, imp=False):
+	"""Deprecated, da un ratio basado en la cantidad de caballos, la cantidad de ataques y el n£mero de 
+	espacios en blanco, sin embargo es mejor maximizarlas y minimizarlas individualmente """
     horses = 0
     attacks = 0
     blanks = 0
@@ -92,6 +97,7 @@ def getRatio(matrix, imp=False):
 
 
 def evalOneMin(individual):
+	"""Evalua un tablero """
     # print individual
     attackMatrix = []
     attackMatrix = getAttacks(individual)
@@ -110,7 +116,7 @@ def ex():
     hof = tools.HallOfFame(1)
     stats = tools.Statistics(lambda ind: ind.fitness.values)
     stats.register("avg", np.mean)
-    #stats.register("std", np.std)
+    stats.register("std", np.std)
     stats.register("min", np.min)
     stats.register("max", np.max)
     algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 15, stats=stats, halloffame=hof)
