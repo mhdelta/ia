@@ -11,6 +11,6 @@ with mic as source:
 
 text = r.recognize_google(audio)
 
-tts = gTTS(text=text, lang='es')
+tts = gTTS(text=text, lang='es-CO')
 tts.save("hi_gtts1.mp3")
 os.system("mpg321 hi_gtts1.mp3")

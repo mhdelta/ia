@@ -1,3 +1,2 @@
-quepy
-igdb_api_python
 pymongo
+termcolor
